@@ -1,0 +1,37 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+$light-grey: #6B6B6B;
+
+#myCarousel
+{
+	margin: 0%;
+	height: 100%;
+}
+
+.carousel-inner > .item > img 
+{
+    margin: 0 auto;
+}
+
+.carousel-control.left, .carousel-control.right
+{
+	background-image: none;
+}
+
+.carousel-indicators li
+{
+	background-color: $light-grey;
+	border-color: $light-grey;
+	border: $light-grey;
+}
+
+
+.fa
+{
+	&:hover
+	{
+		text-decoration:none;
+		color:$light-grey;
+	}
+}
