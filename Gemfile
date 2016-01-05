@@ -23,6 +23,8 @@ gem 'bootstrap-sass'
 
 gem 'font-awesome-sass'
 
+gem 'bcrypt'
+
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
