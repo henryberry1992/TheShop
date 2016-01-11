@@ -10,6 +10,8 @@
 * at the top of the compiled file, but it's generally better to create a new
 * file per style scope.
 *
+*
+*= require jquery-ui
 *= require_self
 *= require_tree .
 */
@@ -28,10 +30,4 @@
 		text-decoration:none;
 		color: #6B6B6B;
 	}
-}
-
-.list_actions > a:hover
-{
-	background-color: transparent;
-	color: black;
 }

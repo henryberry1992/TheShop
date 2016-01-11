@@ -23,6 +23,13 @@
 	border: #6B6B6B;
 }
 
+.product_list
+{
+  list-style-type: none;
+}
+
+
+
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -30,12 +37,6 @@
   box-sizing:         border-box;
 }
 
-.list_actions > a:hover
-{
-	background-color: transparent;
-	color: black;
-}
-/* miscellaneous */
 
 .debug_dump {
   clear: both;
