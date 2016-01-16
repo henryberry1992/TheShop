@@ -4,7 +4,11 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @orders = Order.order("created_at DESC").page(params[:page]).limit(10)
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @orders }
+    end
   end
 
   # GET /orders/1
@@ -14,7 +18,16 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
+    @cart = current_cart
+    if @cart.line_items.empty?
+      redirect_to store_url, notice: "Your cart is empty"
+      return
+    end
     @order = Order.new
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @order }
+    end
   end
 
   # GET /orders/1/edit
@@ -25,12 +38,16 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
+    @order.add_line_items_from_cart(current_cart)
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+        Cart.destroy(session[:cart_id])
+        session[:cart_id] = nil
+        format.html { redirect_to store_url, notice: 'Thank you for your order.' }
         format.json { render :show, status: :created, location: @order }
       else
+        @cart = current_cart
         format.html { render :new }
         format.json { render json: @order.errors, status: :unprocessable_entity }
       end
@@ -69,6 +86,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:name, :address, :text, :email, :pay_type)
+      params.require(:order).permit(:name, :address, :email, :pay_type)
     end
 end

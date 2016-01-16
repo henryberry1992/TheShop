@@ -9,7 +9,9 @@ Rails.application.routes.draw do
 
   get 'signup' => 'users#new'
 
-  resources :products
+  resources :products do
+    get :who_bought, on: :member
+  end
   resources :users
   resources :store
   

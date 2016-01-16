@@ -25,6 +25,8 @@ gem 'font-awesome-sass'
 
 gem 'bcrypt'
 
+gem 'will_paginate'
+
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
