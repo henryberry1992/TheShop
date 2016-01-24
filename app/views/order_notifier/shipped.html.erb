@@ -1,0 +1,10 @@
+<h1>Order Shipped</h1>
+
+<p>
+  Email confirming order has been shipped.
+</p>
+
+<table>
+	<tr><th colspan = "2">Quantity</th><th>Description</th></tr>
+	<%= render @order.line_items %>
+</table>

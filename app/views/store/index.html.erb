@@ -51,25 +51,21 @@
     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
-</div>
+</div>  
 
 <h3 class = "text-center"> Jewelleries </h3>
-<div class = "column">
-  <ul class = "product_grid text-center">
-    <% @products.each do |product| %>
-      <li class = "product_list col-lg-4 col-md-4 col-xs-12">
-        <div class ="product_details">
-          <%=link_to product do %>
-            <%= image_tag product.image.url(:medium) %>
-          <% end %>
-          <div class = "product_info">
-            <div><%= product.name %></div>
-            <div><%= number_to_currency(product.price) %></div>
-          </div>
-
-          <%= button_to "Add to Cart", line_items_path(product_id: product), remote: true %>
+<% @products.in_groups_of(4, false).each do |group| %>
+  <div class='product_list text-center'>
+    <% group.each do |product| %>
+      <div class='product_detail col-lg-3 col-md-3 col-xs-12 text-center'>
+        <div class = "product_image center-block">  
+          <%= image_tag(product.image.url(:medium), class: "img-responsive") %>
         </div>
-      </li>
+        <h3><%= product.name %></h3>
+        <div><%= number_to_currency(product.price) %></div> 
+        <%= button_to 'Add to Cart', line_items_path(product_id: product), class: 'btn btn-info btn-sm margin-btm', remote: true %>
+      </div>
     <% end %>
-  </ul>
-</div>
+  </div>
+<% end %>
+  
