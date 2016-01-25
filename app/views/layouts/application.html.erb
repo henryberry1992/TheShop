@@ -11,6 +11,7 @@
 	</head>
 	<body class = "<%= controller.controller_name %>">
 		<%= render 'layouts/header' %>
+		<%= flash_messages %>
 		<% if @cart %>
 			<%= hidden_div_if(@cart.line_items.empty?, id: 'cart') do %>
 			<%= render @cart %>
