@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
+  get 'admin/index'
+  get 'login' => 'sessions/new'
+  post 'login' => 'sessions/create'
+  delete 'logout' => 'sessions/destroy' 
+  root to: 'store#index', as: 'store'
+  get 'store/index'
+  get 'users/new'
+  get 'signup' => 'users#new'
+
   resources :orders
   resources :line_items
   resources :carts
-  root to: 'store#index', as: 'store'
-  get 'store/index'
-
-  get 'users/new'
-
-  get 'signup' => 'users#new'
-
   resources :products do
     get :who_bought, on: :member
   end
